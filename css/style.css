@@ -15,8 +15,3 @@
   height: 20px;
   background-color: #dfdfdfc3;
 }
-
-.container > div:nth-child(17n) {
-  width: 100%;
-  height: auto;
-}

@@ -1,3 +1,7 @@
+:root {
+  --sketch-color: #dfdfdfc3;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,5 +17,5 @@
 .container > div {
   width: 20px;
   height: 20px;
-  background-color: #dfdfdfc3;
+  background-color: var(--sketch-color);
 }

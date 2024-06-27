@@ -17,7 +17,7 @@ function makeColumns(columns) {
   }
   `;
 
-  let styleSheet = document.createElement("style");
+  const styleSheet = document.createElement("style");
   styleSheet.textContent = createColumnsEveryNElement;
   document.head.appendChild(styleSheet);
 }
@@ -27,4 +27,15 @@ function makeGrid(rows, columns) {
   makeColumns(columns);
 }
 
+function draw() {
+  const color = "green";
+
+  for (let i = 0; i < divContainer.children.length; i++) {
+    divContainer.children[i].addEventListener("mouseover", (e) => {
+      e.target.style.backgroundColor = color;
+    });
+  }
+}
+
 makeGrid(16, 16);
+draw();

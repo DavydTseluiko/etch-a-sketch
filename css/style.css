@@ -27,10 +27,14 @@ body {
   color: var(--main-color);
 }
 
-.size {
+button {
   padding: 8px 16px;
   cursor: pointer;
   background-color: var(--primary-color);
+}
+
+.size {
+  margin-right: 10px;
 }
 
 .container {

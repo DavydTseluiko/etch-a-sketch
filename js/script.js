@@ -1,6 +1,7 @@
 const divContainer = document.querySelector(".container");
 const sizeButton = document.querySelector(".size");
 const styleSheet = document.createElement("style");
+const reset = document.querySelector(".reset");
 
 function defineSketchSize() {
   divContainer.innerHTML = "";
@@ -12,6 +13,12 @@ function defineSketchSize() {
   } while (userCustomSize < 1 || userCustomSize > 100);
 
   createSketch(userCustomSize, userCustomSize);
+}
+
+function resetSketch() {
+  for (let i = 0; i < divContainer.children.length; i++) {
+    divContainer.children[i].classList.remove("hovered");
+  }
 }
 
 function makeRows(rows, columns) {
@@ -52,12 +59,26 @@ function makeGridElementsSize(rows) {
   styleSheet.appendChild(document.createTextNode(style));
 }
 
-function draw(color) {
+function addClassWhenHovered() {
   for (let i = 0; i < divContainer.children.length; i++) {
     divContainer.children[i].addEventListener("mouseover", (e) => {
-      e.target.style.backgroundColor = color;
+      e.target.classList.add("hovered");
     });
   }
+}
+
+function changeHoveredColor(color) {
+  let style = `
+  .hovered {
+    background-color: ${color} !important;
+  }
+  `;
+  styleSheet.appendChild(document.createTextNode(style));
+}
+
+function draw(color) {
+  changeHoveredColor(color);
+  addClassWhenHovered();
 }
 
 function createSketch(rows, columns) {
@@ -69,3 +90,4 @@ function createSketch(rows, columns) {
 createSketch(16, 16);
 document.head.appendChild(styleSheet);
 sizeButton.addEventListener("click", defineSketchSize);
+reset.addEventListener("click", resetSketch);

@@ -15,9 +15,6 @@ function defineSketchSize() {
 
   let value = slider.value;
   createSketch(+value, +value);
-
-  sliderValue.classList.remove("active");
-  slider.classList.remove("active");
 }
 
 function resetSketch() {
@@ -102,3 +99,7 @@ slider.oninput = () => {
   sliderValue.textContent = `${slider.value}x${slider.value}`;
 };
 slider.addEventListener("click", defineSketchSize);
+divContainer.addEventListener("mouseover", () => {
+  sliderValue.classList.remove("active");
+  slider.classList.remove("active");
+})

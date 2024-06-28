@@ -78,6 +78,15 @@ function changeHoveredColor(color) {
   styleSheet.appendChild(document.createTextNode(style));
 }
 
+function randomColorGenerator() {
+  let letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function draw(color) {
   changeHoveredColor(color);
   addClassWhenHovered();
@@ -86,7 +95,7 @@ function draw(color) {
 function createSketch(rows, columns) {
   makeGrid(rows, columns);
   makeGridElementsSize(rows);
-  draw("purple");
+  draw(randomColorGenerator());
 }
 
 createSketch(16, 16);
@@ -102,4 +111,4 @@ slider.addEventListener("click", defineSketchSize);
 divContainer.addEventListener("mouseover", () => {
   sliderValue.classList.remove("active");
   slider.classList.remove("active");
-})
+});

@@ -2,17 +2,22 @@ const divContainer = document.querySelector(".container");
 const sizeButton = document.querySelector(".size");
 const styleSheet = document.createElement("style");
 const reset = document.querySelector(".reset");
+const slider = document.querySelector(".slider");
+const sliderValue = document.querySelector(".slider-value");
+
+function runSlider() {
+  slider.classList.add("active");
+}
 
 function defineSketchSize() {
   divContainer.innerHTML = "";
   styleSheet.innerHTML = "";
-  let userCustomSize;
 
-  do {
-    userCustomSize = +prompt("Enter a number from 1 to 100");
-  } while (userCustomSize < 1 || userCustomSize > 100);
+  let value = slider.value;
+  createSketch(+value, +value);
 
-  createSketch(userCustomSize, userCustomSize);
+  sliderValue.classList.remove("active");
+  slider.classList.remove("active");
 }
 
 function resetSketch() {
@@ -89,5 +94,11 @@ function createSketch(rows, columns) {
 
 createSketch(16, 16);
 document.head.appendChild(styleSheet);
-sizeButton.addEventListener("click", defineSketchSize);
+sizeButton.addEventListener("click", runSlider);
 reset.addEventListener("click", resetSketch);
+slider.addEventListener("mousedown", () => sliderValue.classList.add("active"));
+slider.oninput = () => {
+  resetSketch();
+  sliderValue.textContent = `${slider.value}x${slider.value}`;
+};
+slider.addEventListener("click", defineSketchSize);
